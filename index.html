@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papyruscript - Stop Losing Funding</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color:#304850;
+            background: #FFF;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c9e8c;
+			
+				background-image: url(images/logo.png);
+				background-size: contain;
+				background-repeat: no-repeat;
+				margin-bottom: 50px;
+			
+			
+        }
+
+        .hero {
+		
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f4f2 100%);
+            padding: 30px 20px;
+            text-align: center;
+			    background-image: url(images/hero.png);
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: 0px -140px; 
+        }
+		.hero .container{
+		 max-width:800px;
+		}
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 .highlight {
+            color: #28B3B8;
+        }
+
+        .hero p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .video-section {
+            
+            border-radius: 20px;
+            margin: 0px auto;
+            max-width: 930px;
+            text-align: center;
+            position: relative;
+			
+			/* Overlay+Shadow */
+
+
+
+        }
+
+        .play-button {
+           
+			 
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            margin: 10px auto 20px ;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+      
+
+        .benefits {
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: left;
+			 align-items: left;
+			color:black;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            color: black;
+            font-weight: 500;
+        }
+
+        .benefit-item::before {
+            content: '✓';
+            background: #28B3B8;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 70px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #2c9e8c;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #248a7a;
+        }
+
+        .btn-secondary {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #ee5a5a;
+        }
+
+        .stats-section {
+            padding: 20px 20px;
+            text-align: center;
+			margin-top: 70px;
+        }
+
+        .stats-section h2 {
+            margin-bottom: 5px;
+            font-size: 2em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            max-width: 40px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            padding: 20px 20px;
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+			margin-bottom: 15px;
+			text-align:left;
+        }
+
+        .stat-card.teal {
+            background: #28B3B8;
+        }
+
+        .stat-card.yellow {
+            background: #FFD56B;
+            color: #333;
+
+        }
+
+        .stat-card.coral {
+            background: #FF745C;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            margin-bottom: 0px;
+        }
+
+        .pitfalls {
+            background: white;
+            padding: 60px 20px;
+			text-align: left;
+        }
+
+        .pitfalls h3 {
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        .pitfall-list {
+            list-style: none;
+        }
+
+        .pitfall-list li {
+            padding: 0px 0;
+            padding-left: 0px;
+			padding-bottom: 5px;
+            position: relative;
+			display:flex;
+             
+        }
+
+        .pitfall-list li::before {
+            content: '✗';
+				background: #F24822;
+				color: white;
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-right: 10px;
+				font-size: 14px;
+        }
+
+        .services {
+            padding: 60px 20px;
+             
+        }
+
+        .services h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .services h2 .highlight {
+            color: #28B3B8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+			 
+        }
+
+        .service-card {
+            background: white;
+            padding: 20px;
+            background: #FFFFFF;
+			border: 1px solid #D9E8E8;
+			box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+			border-radius: 16px;
+			display:flex;
+			flex-direction:column;
+        }
+		
+		 .service-card P{
+			 
+			font-style: normal;
+			font-weight: 400;
+			font-size: 18px;
+			line-height: 26px;
+			}
+
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+           
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .service-icon.teal {
+            
+        }
+
+        .service-icon.blue {
+            
+        }
+
+        .service-icon.coral {
+            
+        }
+
+        .service-number {
+            font-size: 3em;
+            color: #2c9e8c;
+            font-weight: bold;
+            margin-top: auto;
+			text-align: right;
+        }
+
+        .testimonials {
+            padding: 60px 20px;
+            background: #FBF9F4;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            
+            font-size: 2em;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+			
+			padding-left: 60px;
+			padding-right: 60px;
+
+        }
+
+        .testimonial {
+            padding: 30px;
+            background: #FFF;
+            border-radius: 10px;
+        }
+
+        .stars {
+            color: #ffd166;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            border-top: 1px solid #D9E8E8;
+			padding-top:20px;
+            
+        }
+		.author-name{
+			font-weight: bold;
+		}
+		.author-org{
+			color: #28B3B8;
+		}
+		
+        .guarantee {
+            background: #28B3B8;
+            color: white;
+            padding: 20px;
+          
+            margin: 60px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+			
+			margin-left: 60px;
+			margin-right: 60px;
+        }
+
+        .guarantee-badge {
+            width: 100px;
+            height: 100px;
+ 
+            display: flex;
+            align-items: center;
+          
+            font-weight: bold;
+            
+            transform: rotate(-15deg);
+        }
+
+        .faq {
+            padding: 60px 20px;
+            background: #FBF9F4;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+        }
+		.faq-list{
+			max-width: 700px;
+		}
+        .faq h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2em;
+            color: #28B3B8;
+        }
+
+        .faq-item {
+            background: #FBF9F4;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			border-bottom: 1px solid #D9E8E8;
+        }
+
+        .faq-question:hover {
+            background: #e8f4f2;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+        }
+
+        .contact-form {
+            
+            padding: 60px 20px;
+        }
+
+        .contact-form h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2em;
+            color: #28B3B8;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+			background: #FFFF;
+			border: 1px solid #D9E8E8;
+			box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+			border-radius: 16px;
+			padding: 48px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+		.form-group textarea{
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+			background-color:#FBF9F4;
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2c9e8c;
+            font-weight: 600;
+        }
+
+        .badge::before {
+            content: '✓';
+            width: 30px;
+            height: 30px;
+            background: #2c9e8c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer {
+            background: #ebebeb;
+            color: #000000;
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 15px;
+            color: #2c9e8c;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #000;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .footer-section a:hover {
+            color: #2c9e8c;
+        }
+		p{
+		font-size: 1.1em;
+		}
+		
+		.vframe{
+		border-radius: 15px;
+		box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+		position: relative;
+		width: 100%;
+		max-width: 560px;
+		max-height: 315;
+		padding-bottom: 40.75%; /* 16:9 Aspect Ratio */
+		height: 0;
+		overflow: hidden;
+		}
+		
+		.vframe iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 15px;
+		}
+		
+		.alert-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffe5e5;
+            color: #dc3545;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .alert-icon {
+            width: 20px;
+            height: 20px;
+            background: #dc3545;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+
+            .benefits {
+                position: static;
+                transform: none;
+                margin-top: 30px;
+                text-align: center;
+            }
+
+            .benefit-item {
+                justify-content: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .video-section {
+                padding: 40px 20px;
+            }
+        }
+		
+    </style>
+	<meta name="referrer" content="origin-when-cross-origin" />
+
+</head>
+<body>
+ 
+
+    <section class="hero">
+	    <div class="container">
+            <div class="logo">&nbsp;</div>
+        </div>
+        <div class="container">
+            <h1>
+                Stop Losing Funding: <span class="highlight">The Proven Blueprint That Boosts<br>PhD & Postdoc Gran Success by 80%</span>
+            </h1>
+            <p>Unlock a professionally crafted, fundable, institution-ready Research Proposal or Grant Application — powered by Papyruscript's expert academic writers.</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="video-section">
+            <div class="play-button">
+				<div class="vframe">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/q6eeBaHg8Kk?si=pM1QJ0bpG7NSMlzM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowfullscreen></iframe>
+				</div>
+				
+				<div>
+					<!--div style="color: black; font-weight: 500;">Watch How We Helped 500+ Researchers Secure Funding</div-->
+				</div>
+			
+			</div>
+            
+            <div class="benefits">
+                <div class="benefit-item">Faster Thesis Submission</div>
+                <div class="benefit-item">Proposal Acceptance</div>
+                <div class="benefit-item">Funding Approval</div>
+                <div class="benefit-item">Meeting ALL Requirements on the First Try</div>
+            </div>
+        </div>
+
+        <div class="cta-buttons">
+            <button class="btn btn-primary">Get your Academic proposal written now</button>
+            <button class="btn btn-secondary">Book FREE Consultation</button>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+		
+		<div style="text-align: center;">
+            <div class="alert-badge">
+                <span class="alert-icon">⚠</span>
+                The Problem Every Researcher Faces
+            </div>
+        </div>
+            <h2>Why Do Most Grant Applications Fail?</h2>
+            <div style="max-width: 500px;text-align: center;display: inline-flex;">
+				<div>Even brilliant research ideas get rejected because of poor presentation, unclear
+				structure, or failure to meet institutional requirements.</div>
+			</div>
+            
+            <div style="display: flex; gap: 40px; align-items: flex-start; max-width: 1000px; margin: 0 auto; flex-wrap: wrap;">
+                <div style=" ">
+                    <div class="pitfalls">
+                        <h3>Common Pitfalls<br>That Cost You Funding:</h3>
+                        <ul class="pitfall-list">
+                            <li>Rejected proposals due to unclear methodology</li>
+                            <li>Missed deadlines causing funding opportunities to slip away</li>
+                            <li>Weak literature reviews that don't convince reviewers</li>
+                            <li>Budget justifications that don't align with project goals</li>
+                            <li>Lack of institutional formatting compliance</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="display: flex;justify-content: center;align-items: center;min-height: 100vh;flex-wrap: wrap;gap: 20px;" >
+                    <div class="">
+                        <div class="stat-card teal" style="margin-top: 60px;">
+                            <div class="stat-number">80%</div>
+                            <div>Success<br/>Rate</div>
+                        </div>
+                        <div class="stat-card coral">
+                            <div class="stat-number">500+</div>
+                            <div>Funded<br/>Researchers</div>
+                        </div>
+                    </div>
+					<div class="">
+                        <div class="stat-card yellow">
+                            <div class="stat-number">90%</div>
+                            <div>Deadlines<br/>Reduced</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container" style="justify-items: center;">
+            <h2>Introducing <span class="highlight">Papyruscript's Research Proposal & Grant<br>Application Writing Service</span></h2>
+            <p style="text-align: center; margin-bottom: 40px;">Our proven 3-phase process transforms your research idea into a fundable, institution-ready proposal</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon teal"><img src="images/service1.png" style="width:70%" /> </div>
+                    <h3>Deep-Dive Discovery</h3>
+                    <p>We analyze your research, institutional requirements, and funding body criteria to create a comprehensive blueprint.</p>
+                    <div class="service-number">01</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon blue"><img src="images/service2.png" style="width:70%" /></div>
+                    <h3>Blueprint Architecture</h3>
+                    <p>Expert academic writers craft your proposal with precise methodology,compelling literature review, and justified budget.</p>
+                    <div class="service-number">02</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon coral"><img src="images/service3.png" style="width:70%" /></div>
+                    <h3>Polish & Perfect</h3>
+                    <p>Multiple rounds of editing ensure your proposal meets all requirements and stands out to reviewers.</p>
+                    <div class="service-number">03</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>Trusted by Researchers at Top Institutions</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Join 500+ review that we have secured funding with our help</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Papyruscript helped me secure a €150,000
+					research grant. Their attention to detail and
+					understanding of what reviewers look for
+					was incredible."
+					</p>
+                    <div class="testimonial-author">
+						<div class="author-name">Dr. Sarah Martinez</div>
+						<div class="author-desg">Postdoctoral Researcher</div>
+						<div class="author-org">University of Cambridge</div>
+					</div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"I was struggling with my PhD proposal for
+						months. Within two weeks of working with
+						Papyruscript, it was approved by my
+						committee."</p>
+						<div class="testimonial-author">
+						<div class="author-name">James Chen</div>
+						<div class="author-desg">PhD Candidate</div>
+						<div class="author-org">Stanford University</div>
+						</div>
+			
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"The team's expertise in grant writing is
+						unmatched. They transformed my rough
+						ideas into a compelling, fundable proposal."</p>
+                    	<div class="testimonial-author">
+						<div class="author-name">Prof. Amara Okafor</div>
+						<div class="author-desg">Associate Professor</div>
+						<div class="author-org">MIT</div>
+						</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="guarantee">
+            <div>
+                <h2 style="margin-bottom: 15px;">Approval-Ready Guarantee</h2>
+                <p style="max-width:500px">If your proposal isn't accepted due to formatting or structural issues, we'll re-edit it for free. Your
+					success is our commitment.</p>
+            </div>
+            <div class="guarantee-badge"><img src="images/guarantee.png" style="width: 250%;" /></div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container" style="display: flex;flex-direction: column;">
+            <h2>Frequently Asked Questions</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Everything you need to know about our service</p>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        How long does the process take?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Typically 2-4 weeks depending on the complexity of your proposal and funding requirements. Rush services are available for urgent deadlines.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        What if my proposal gets rejected?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer free revisions if the rejection is due to formatting or institutional requirements. Our approval-ready guarantee ensures your proposal meets all technical requirements.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Do you work with all academic fields?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Our team includes PhD experts across STEM, social sciences, humanities, and more. We match you with specialists in your field.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Can I communicate directly with my writer?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. You'll have direct communication with your assigned PhD expert throughout the entire process to ensure your vision is perfectly captured.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                       What if I need revisions?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All our writers hold PhDs from top institutions and have extensive experience in grant writing and academic publishing. Many are active researchers themselves.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Do you handle institutional-specific requirements?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we handle proposals of all scales, from small pilot grants to multi-million dollar multi-year funding applications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-form">
+        <div class="container" style="background-image: url(images/map.png);">
+            <h2>Ready to Transform Your Research Proposal?</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Book your free consultation now and take the first step toward securing funding</p>
+            
+            <form class="form-grid">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address*</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Your Role *</label>
+                    <select required>
+                        <option value="">Select...</option>
+                        <option>PhD Candidate</option>
+                        <option>Postdoc</option>
+                        <option>Assistant Professor</option>
+                        <option>Associate Professor</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Institution</label>
+					<input type="text" >                    
+                </div>
+				<div class="form-group">
+                    <label>Submission Deadline</label>
+                     <input type="date" >
+                </div>
+				<div class="form-group">
+                    <label>Budget Range *</label>
+                    <select required>
+                        <option value="">Select...</option>
+                        <option>PhD Candidate</option>
+                        <option>Postdoc</option>
+                        <option>Assistant Professor</option>
+                        <option>Associate Professor</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label>Tell Us About Your Project</label>
+					<textarea rows=5></textarea>                     
+                </div>
+				
+				<div class="form-group" style="grid-column: 1 / -1;">
+                <button class="btn btn-secondary" style="padding: 10px 60px; font-size: 18px;background-color:#FF745C">Book FREE Consultation</button>
+				</div>
+            </form>
+            
+
+
+            <div class="trust-badges">
+                <div class="badge">100% Confidential</div>
+                <div class="badge">Quick Turnaround</div>
+                <div class="badge">Expert Writers</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Our Graduates</a></li>
+                        <li><a href="#">Why It Works</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Grant Writing</a></li>
+                        <li><a href="#">Proposal Writing</a></li>
+                        <li><a href="#">Research Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#">Help + Support</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #555;">
+                <p>&copy; Papyruscript. All Rights Reserved.</p>
+                <p style="font-size: 12px; margin-top: 10px;">
+                    <a href="#" style="color: #ccc; text-decoration: none; margin: 0 10px;">Privacy Policy</a>
+                    <a href="#" style="color: #ccc; text-decoration: none; margin: 0 10px;">Terms of Service</a>
+                    <a href="#" style="color: #ccc; text-decoration: none; margin: 0 10px;">Cookie Policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-question span').textContent = '+';
+            });
+            
+            if (!isActive) {
+                faqItem.classList.add('active');
+                element.querySelector('span').textContent = '−';
+            }
+        }
+
+        document.querySelector('.play-button').addEventListener('click', function() {
+            alert('Video would play here in the actual implementation');
+        });
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you shortly.');
+        });
+    </script>
+</body>
+</html>
