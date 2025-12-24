@@ -89,11 +89,10 @@
 
         .play-button {
            
-			 
-            display: flex;
+		
             align-items: center;
             justify-content: left;
-            margin: 10px auto 20px ;
+            margin: 30px auto 20px ;
             cursor: pointer;
             transition: transform 0.3s;
         }
@@ -130,6 +129,7 @@
             justify-content: center;
             margin-right: 10px;
             font-size: 14px;
+			flex-shrink: 0;
         }
 
         .cta-buttons {
@@ -217,7 +217,7 @@
 
         .pitfalls {
             background: white;
-            padding: 60px 20px;
+            padding: 0px 20px;
 			text-align: left;
         }
 
@@ -240,7 +240,7 @@
         }
 
         .pitfall-list li::before {
-            content: '✗';
+				content: '✗';
 				background: #F24822;
 				color: white;
 				width: 24px;
@@ -251,6 +251,7 @@
 				justify-content: center;
 				margin-right: 10px;
 				font-size: 14px;
+				flex-shrink: 0;
         }
 
         .services {
@@ -380,7 +381,7 @@
         .guarantee {
             background: #28B3B8;
             color: white;
-            padding: 20px;
+            padding: 10px;
           
             margin: 60px 0;
             border-radius: 10px;
@@ -388,7 +389,7 @@
             align-items: center;
             justify-content: center;
             gap: 40px;
-			
+			flex-wrap: wrap;
 		 
         }
 
@@ -567,25 +568,26 @@
 		font-size: 1.1em;
 		}
 		
-		.vframe{
-		border-radius: 15px;
-		box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
-		position: relative;
-		width: 100%;
-		max-width: 560px;
-		max-height: 315;
-		padding-bottom: 40.75%; /* 16:9 Aspect Ratio */
-		height: 0;
-		overflow: hidden;
+ 
+		.vframe {
+			position: relative; /* Essential for positioning the iframe inside it */
+			padding-bottom: 56.25%; /* This is the magic number for 16:9 aspect ratio (9/16 * 100) */
+			padding-top: 25px; /* Adds a little space above the video; adjust as needed */
+			height: 0; /* Ensures the container collapses vertically but maintains padding-bottom height */
+			overflow: hidden; /* Hides any potential overflow just in case */
+			max-width: 100%; /* Ensures it respects the width of its parent container */
+			max-width:560px;
+			max-height:320px;
 		}
 		
 		.vframe iframe {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		border-radius: 15px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: 15px;
+			max-height:320px;
 		}
 		
 		.alert-badge {
@@ -666,13 +668,11 @@
 
     <section class="container">
         <div class="video-section">
+		
             <div class="play-button">
-				<div class="vframe">
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/q6eeBaHg8Kk?si=pM1QJ0bpG7NSMlzM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowfullscreen></iframe>
-				</div>
-				
-				
-			
+				 
+				<div style="left: 0; max-width:560px; width: 100%; height: 0; position: relative; padding-bottom: 42.25%;"><iframe src="https://www.youtube.com/embed/q3lX2p_Uy9I?rel=0" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe></div>
+				 
 			</div>
             
             <div class="benefits">
@@ -704,8 +704,8 @@
 				structure, or failure to meet institutional requirements.</div>
 			</div>
             
-            <div style=" gap: 40px; align-items: flex-start; max-width: 1000px; margin: 0 auto; flex-wrap: wrap;">
-                <div style=" ">
+            <div style="display:flex; gap: 40px;flex-wrap: wrap;justify-self: center;    margin-top: 50px;">
+                 
                     <div class="pitfalls">
                         <h3>Common Pitfalls<br>That Cost You Funding:</h3>
                         <ul class="pitfall-list">
@@ -716,25 +716,10 @@
                             <li>Lack of institutional formatting compliance</li>
                         </ul>
                     </div>
-                </div>
-                <div style="display: flex;justify-content: center;align-items: center;min-height: 100vh;flex-wrap: wrap;gap: 20px;" >
-                    <div class="">
-                        <div class="stat-card teal" style="margin-top: 60px;">
-                            <div class="stat-number">80%</div>
-                            <div>Success<br/>Rate</div>
-                        </div>
-                        <div class="stat-card coral">
-                            <div class="stat-number">500+</div>
-                            <div>Funded<br/>Researchers</div>
-                        </div>
-                    </div>
-					<div class="">
-                        <div class="stat-card yellow">
-                            <div class="stat-number">90%</div>
-                            <div>Deadlines<br/>Reduced</div>
-                        </div>
-                    </div>
-                </div>
+                 
+					<div class="pitfalls">
+						<image style="max-width:300px" src="images/b.svg"/>
+					</div>
             </div>
         </div>
     </section>
@@ -767,7 +752,7 @@
         </div>
     </section>
 
-    <section class="testimonials">
+    <section class="testimonials" style="background-color:#FBF9F4">
         <div class="container">
             <h2>Trusted by Researchers at Top Institutions</h2>
             <p style="text-align: center; margin-bottom: 40px;">Join 500+ review that we have secured funding with our help</p>
@@ -819,9 +804,9 @@
             <div>
                 <h2 style="margin-bottom: 15px;">Approval-Ready Guarantee</h2>
                 <p style="max-width:500px">If your proposal isn't accepted due to formatting or structural issues, we'll re-edit it for free. Your
-					success is our commitment.</p>
+					success is our commitment.</p>				
             </div>
-            
+            <img style="max-width:200px;transform: rotate(-20.04deg);" src="images/guarantee.png"/>
         </div>
     </section>
 
