@@ -618,6 +618,139 @@
 
         @media (max-width: 768px) {
             .hero h1 {
+                font-size: 1em;
+            }
+
+            .benefits {
+                position: static;
+                transform: none;
+                margin-top: 30px;
+                text-align: center;
+            }
+
+            .benefit-item {
+                justify-content: left;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .video-section {
+              
+            }
+			
+			.form-grid{
+			 display:block;
+			}
+			
+			.form-group{margin-top:20px;}
+        }
+		
+		
+    </style>
+	<style>
+	.modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            color: #28B3B8;
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .close-modal {
+            cursor: pointer;
+            font-size: 28px;
+            color: #666;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal-form-group {
+            margin-bottom: 20px;
+        }
+
+        .modal-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #304850;
+        }
+
+        .modal-form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #FBF9F4;
+        }
+
+        .modal-form-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #FBF9F4;
+        }
+
+        .phone-input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .phone-input-group select {
+            width: 120px;
+            flex-shrink: 0;
+        }
+
+        .phone-input-group input {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
                 font-size: 1.8em;
             }
 
@@ -637,7 +770,7 @@
             }
 
             .video-section {
-                padding: 40px 20px;
+              
             }
 			
 			.form-grid{
@@ -645,9 +778,14 @@
 			}
 			
 			.form-group{margin-top:20px;}
+
+            .modal-content {
+                padding: 30px 20px;
+            }
         }
 		
     </style>
+	
 	<meta name="referrer" content="origin-when-cross-origin" />
 
 </head>
@@ -660,7 +798,7 @@
         </div>
         <div class="container">
             <h1>
-                Stop Losing Funding: <span class="highlight">The Proven Blueprint That Boosts<br>PhD & Postdoc Gran Success by 80%</span>
+                Stop Losing Funding: <span class="highlight">The Proven Blueprint That Boosts<br>PhD & Postdoc Grant Success by 80%</span>
             </h1>
             <p>Unlock a professionally crafted, fundable, institution-ready Research Proposal or Grant Application — powered by Papyruscript's expert academic writers.</p>
         </div>
@@ -677,7 +815,7 @@
         </div>
 
         <div class="cta-buttons">
-            <button class="btn btn-primary">Get your Academic proposal written now</button>
+            <button class="btn btn-primary" onclick="openModal()">Get your Academic proposal written now</button>
             <button class="btn btn-secondary"  ><a style="text-decoration: none;color: white;" href="#freeconsultation">Book FREE Consultation</a></button>
         </div>
 
@@ -901,6 +1039,63 @@
             </div>
         </div>
     </section>
+	
+	<!-- Modal Dialog -->
+<div id="proposalModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Get Started Today</h3>
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+        </div>
+        <form id="modalForm" onsubmit="handleModalSubmit(event)">
+            <div class="modal-form-group">
+                <label>Full Name *</label>
+                <input type="text" id="modal-name" required>
+            </div>
+            <div class="modal-form-group">
+                <label>Email Address *</label>
+                <input type="email" id="modal-email" required>
+            </div>
+            <div class="modal-form-group">
+                <label>Phone Number (International) *</label>
+                <div class="phone-input-group">
+                    <select id="modal-isd" required>
+                        <option value="">ISD</option>
+                        <option value="+1">+1 (US/CA)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+91">+91 (India)</option>
+                        <option value="+86">+86 (China)</option>
+                        <option value="+81">+81 (Japan)</option>
+                        <option value="+49">+49 (Germany)</option>
+                        <option value="+33">+33 (France)</option>
+                        <option value="+39">+39 (Italy)</option>
+                        <option value="+34">+34 (Spain)</option>
+                        <option value="+61">+61 (Australia)</option>
+                        <option value="+55">+55 (Brazil)</option>
+                        <option value="+52">+52 (Mexico)</option>
+                        <option value="+7">+7 (Russia)</option>
+                        <option value="+82">+82 (S. Korea)</option>
+                        <option value="+65">+65 (Singapore)</option>
+                        <option value="+971">+971 (UAE)</option>
+                        <option value="+27">+27 (S. Africa)</option>
+                        <option value="+62">+62 (Indonesia)</option>
+                        <option value="+92">+92 (Pakistan)</option>
+                        <option value="+880">+880 (Bangladesh)</option>
+                        <option value="+64">+64 (New Zealand)</option>
+                        <option value="+31">+31 (Netherlands)</option>
+                        <option value="+46">+46 (Sweden)</option>
+                        <option value="+41">+41 (Switzerland)</option>
+                        <option value="+48">+48 (Poland)</option>
+                    </select>
+                    <input type="tel" id="modal-phone" placeholder="123 456 7890" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Submit</button>
+        </form>
+    </div>
+</div>
+	
+	
 
     <footer>
         <div class="container">
@@ -964,5 +1159,60 @@
             alert('Thank you for your interest! We will contact you shortly.');
         });
     </script>
+	
+	<script>
+    function openModal() {
+        document.getElementById('proposalModal').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('proposalModal').classList.remove('active');
+    }
+
+    function handleModalSubmit(e) {
+        e.preventDefault();
+        const name = document.getElementById('modal-name').value;
+        const email = document.getElementById('modal-email').value;
+        const isd = document.getElementById('modal-isd').value;
+        const phone = document.getElementById('modal-phone').value;
+        const fullPhone = isd + ' ' + phone;
+        
+        alert(`Thank you ${name}! We will contact you shortly at ${email} or ${fullPhone}.`);
+        closeModal();
+        document.getElementById('modalForm').reset();
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('proposalModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+
+    function toggleFaq(element) {
+        const faqItem = element.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+            item.querySelector('.faq-question span').textContent = '+';
+        });
+        
+        if (!isActive) {
+            faqItem.classList.add('active');
+            element.querySelector('span').textContent = '−';
+        }
+    }
+
+    document.querySelector('.play-button').addEventListener('click', function() {
+        alert('Video would play here in the actual implementation');
+    });
+
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your interest! We will contact you shortly.');
+    });
+</script>
 </body>
 </html>
