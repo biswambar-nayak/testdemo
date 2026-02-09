@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtistHub - Find Your Perfect Creative Partner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #141414;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #e50914;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #e5e5e5;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #b3b3b3;
+        }
+
+        /* Banner Carousel */
+        .banner-carousel {
+            margin-top: 0;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-slider {
+            display: flex;
+            height: 100%;
+            animation: scroll 28s linear infinite;
+        }
+
+        .banner-slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+        }
+
+        .banner-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .banner-content h1 {
+            font-size: 56px;
+            margin-bottom: 18px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .banner-content p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .banner-btn {
+            padding: 15px 40px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 15px;
+        }
+
+        .banner-btn:hover {
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            23% { transform: translateX(0); }
+            25% { transform: translateX(-100%); }
+            48% { transform: translateX(-100%); }
+            50% { transform: translateX(-200%); }
+            73% { transform: translateX(-200%); }
+            75% { transform: translateX(-300%); }
+            98% { transform: translateX(-300%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Category Section with Carousel */
+        .category-section {
+            padding: 30px 50px;
+            position: relative;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .category-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #e5e5e5;
+        }
+
+        .carousel-nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            width: 45px;
+            height: 45px;
+            background-color: rgba(42, 42, 42, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #000;
+            transform: scale(1.1);
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 18px;
+            transition: transform 0.5s ease;
+        }
+
+        /* Artist Card */
+        .artist-card {
+            min-width: 320px;
+            background-color: #181818;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .artist-card:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            z-index: 10;
+        }
+
+        .artist-image {
+            width: 100%;
+            height: 420px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .artist-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: #e50914;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .artist-info {
+            padding: 18px;
+        }
+
+        .artist-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #e5e5e5;
+        }
+
+        .artist-specialty {
+            font-size: 15px;
+            color: #b3b3b3;
+            margin-bottom: 10px;
+        }
+
+        .artist-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            color: #46d369;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 16px;
+        }
+
+        .artist-location {
+            font-size: 14px;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        .view-profile-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-top: 14px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .view-profile-btn:hover {
+            background-color: #e5e5e5;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">ArtistHub</div>
+        <nav class="nav-links">
+            <a href="#singers">Singers</a>
+            <a href="#musicians">Musicians</a>
+            <a href="#comedians">Comedians</a>
+            <a href="#studios">Studios</a>
+        </nav>
+    </header>
+
+    <!-- Banner Carousel -->
+    <div class="banner-carousel">
+        <div class="banner-slider">
+            <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1600&h=600&fit=crop');">
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <h1>Discover Amazing Talent</h1>
+                    <p>From soulful singers to electrifying dancers - find the perfect artist for your event. Browse thousands of verified professionals ready to bring your vision to life.</p>
+                    <button class="banner-btn">▶ Browse Artists</button>
+                </div>
+            </div>
+            <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1600&h=600&fit=crop');">
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <h1>Premium Recording Studios</h1>
+                    <p>Book world-class studios equipped with cutting-edge technology. Professional spaces for recording, production, photography and rehearsals.</p>
+                    <button class="banner-btn">▶ Explore Studios</button>
+                </div>
+            </div>
+            <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1600&h=600&fit=crop');">
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <h1>Complete Production Services</h1>
+                    <p>Professional cameramen, sound engineers, and motivational speakers - everything you need for a successful event in one place.</p>
+                    <button class="banner-btn">▶ View Services</button>
+                </div>
+            </div>
+            <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=1600&h=600&fit=crop');">
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <h1>Live Entertainment Experts</h1>
+                    <p>Stand-up comedians who deliver unforgettable performances. Book the best comedy acts for corporate events, parties, and festivals.</p>
+                    <button class="banner-btn">▶ Book Comedians</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Singers Category -->
+    <section class="category-section" id="singers">
+        <div class="category-header">
+            <h2 class="category-title">Featured Singers</h2>
+            <div class="carousel-nav">
+                <button class="nav-btn" onclick="scrollCarousel('singers', -1)">‹</button>
+                <button class="nav-btn" onclick="scrollCarousel('singers', 1)">›</button>
+            </div>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="cards-container" id="singers-carousel">
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg');">
+                        <span class="artist-badge">TOP RATED</span>
+                    </div>
+                    <div class="artist-info">
+                        <div class="artist-name">Priya Sharma</div>
+                        <div class="artist-specialty">Classical Vocalist</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.9 (127)</div>
+                        <div class="artist-location">📍 Mumbai</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Rahul Verma</div>
+                        <div class="artist-specialty">Rock & Pop Singer</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.8 (89)</div>
+                        <div class="artist-location">📍 Delhi</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/women/68.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Ananya Desai</div>
+                        <div class="artist-specialty">Jazz Vocalist</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.7 (56)</div>
+                        <div class="artist-location">📍 Bangalore</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/men/46.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Arjun Kapoor</div>
+                        <div class="artist-specialty">Sufi Singer</div>
+                        <div class="artist-rating"><span class="star">★</span> 5.0 (203)</div>
+                        <div class="artist-location">📍 Lucknow</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/women/25.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Kavya Menon</div>
+                        <div class="artist-specialty">Playback Singer</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.9 (145)</div>
+                        <div class="artist-location">📍 Chennai</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Musicians Category -->
+    <section class="category-section" id="musicians">
+        <div class="category-header">
+            <h2 class="category-title">Talented Musicians</h2>
+            <div class="carousel-nav">
+                <button class="nav-btn" onclick="scrollCarousel('musicians', -1)">‹</button>
+                <button class="nav-btn" onclick="scrollCarousel('musicians', 1)">›</button>
+            </div>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="cards-container" id="musicians-carousel">
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/men/54.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Vikram Patel</div>
+                        <div class="artist-specialty">Lead Guitarist</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.9 (178)</div>
+                        <div class="artist-location">📍 Pune</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/women/32.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Sneha Iyer</div>
+                        <div class="artist-specialty">Violinist</div>
+                        <div class="artist-rating"><span class="star">★</span> 5.0 (92)</div>
+                        <div class="artist-location">📍 Hyderabad</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/men/22.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Aditya Singh</div>
+                        <div class="artist-specialty">Tabla Player</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.8 (134)</div>
+                        <div class="artist-location">📍 Varanasi</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/women/50.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Meera Reddy</div>
+                        <div class="artist-specialty">Piano & Keyboard</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.7 (67)</div>
+                        <div class="artist-location">📍 Kolkata</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comedians Category -->
+    <section class="category-section" id="comedians">
+        <div class="category-header">
+            <h2 class="category-title">Stand-Up Comedians</h2>
+            <div class="carousel-nav">
+                <button class="nav-btn" onclick="scrollCarousel('comedians', -1)">‹</button>
+                <button class="nav-btn" onclick="scrollCarousel('comedians', 1)">›</button>
+            </div>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="cards-container" id="comedians-carousel">
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/men/67.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Karan Joshi</div>
+                        <div class="artist-specialty">Observational Comedy</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.9 (234)</div>
+                        <div class="artist-location">📍 Mumbai</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/women/62.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Neha Malhotra</div>
+                        <div class="artist-specialty">Improv Comedy</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.8 (189)</div>
+                        <div class="artist-location">📍 Delhi</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/men/41.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Sameer Gupta</div>
+                        <div class="artist-specialty">Political Satire</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.7 (167)</div>
+                        <div class="artist-location">📍 Bangalore</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dancers Category -->
+    <section class="category-section">
+        <div class="category-header">
+            <h2 class="category-title">Professional Dancers</h2>
+            <div class="carousel-nav">
+                <button class="nav-btn" onclick="scrollCarousel('dancers', -1)">‹</button>
+                <button class="nav-btn" onclick="scrollCarousel('dancers', 1)">›</button>
+            </div>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="cards-container" id="dancers-carousel">
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/women/79.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Simran Kaur</div>
+                        <div class="artist-specialty">Contemporary & Ballet</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.9 (112)</div>
+                        <div class="artist-location">📍 Chandigarh</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/men/85.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Aryan Mehta</div>
+                        <div class="artist-specialty">Hip-Hop & B-boying</div>
+                        <div class="artist-rating"><span class="star">★</span> 5.0 (201)</div>
+                        <div class="artist-location">📍 Mumbai</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/women/38.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Lakshmi Pillai</div>
+                        <div class="artist-specialty">Bharatanatyam</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.9 (145)</div>
+                        <div class="artist-location">📍 Chennai</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studios for Rent -->
+    <section class="category-section" id="studios">
+        <div class="category-header">
+            <h2 class="category-title">Studios for Rent</h2>
+            <div class="carousel-nav">
+                <button class="nav-btn" onclick="scrollCarousel('studios', -1)">‹</button>
+                <button class="nav-btn" onclick="scrollCarousel('studios', 1)">›</button>
+            </div>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="cards-container" id="studios-carousel">
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">SoundWave Studios</div>
+                        <div class="artist-specialty">Recording Studio</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.9 (156)</div>
+                        <div class="artist-location">📍 Mumbai • ₹3000/hr</div>
+                        <button class="view-profile-btn">View Details</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=400&h=400&fit=crop');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Creative Space Hub</div>
+                        <div class="artist-specialty">Photo & Video Studio</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.8 (123)</div>
+                        <div class="artist-location">📍 Delhi • ₹2500/hr</div>
+                        <button class="view-profile-btn">View Details</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Dance Factory</div>
+                        <div class="artist-specialty">Dance Studio</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.7 (98)</div>
+                        <div class="artist-location">📍 Bangalore • ₹800/hr</div>
+                        <button class="view-profile-btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cameramen Category -->
+    <section class="category-section">
+        <div class="category-header">
+            <h2 class="category-title">Professional Cameramen</h2>
+            <div class="carousel-nav">
+                <button class="nav-btn" onclick="scrollCarousel('cameramen', -1)">‹</button>
+                <button class="nav-btn" onclick="scrollCarousel('cameramen', 1)">›</button>
+            </div>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="cards-container" id="cameramen-carousel">
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/men/71.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Rajesh Kumar</div>
+                        <div class="artist-specialty">Wedding Videography</div>
+                        <div class="artist-rating"><span class="star">★</span> 5.0 (234)</div>
+                        <div class="artist-location">📍 Jaipur</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/men/58.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Deepak Rao</div>
+                        <div class="artist-specialty">Corporate Video</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.9 (178)</div>
+                        <div class="artist-location">📍 Mumbai</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Category -->
+    <section class="category-section">
+        <div class="category-header">
+            <h2 class="category-title">Motivational Speakers</h2>
+            <div class="carousel-nav">
+                <button class="nav-btn" onclick="scrollCarousel('speakers', -1)">‹</button>
+                <button class="nav-btn" onclick="scrollCarousel('speakers', 1)">›</button>
+            </div>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="cards-container" id="speakers-carousel">
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/women/72.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Dr. Anjali Mehta</div>
+                        <div class="artist-specialty">Leadership Training</div>
+                        <div class="artist-rating"><span class="star">★</span> 5.0 (267)</div>
+                        <div class="artist-location">📍 Mumbai</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-image" style="background-image: url('https://randomuser.me/api/portraits/men/93.jpg');"></div>
+                    <div class="artist-info">
+                        <div class="artist-name">Suresh Bhatt</div>
+                        <div class="artist-specialty">Youth Empowerment</div>
+                        <div class="artist-rating"><span class="star">★</span> 4.9 (189)</div>
+                        <div class="artist-location">📍 Bangalore</div>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div style="height: 50px;"></div>
+
+    <script>
+        const carousels = {};
+        
+        function scrollCarousel(category, direction) {
+            const carousel = document.getElementById(category + '-carousel');
+            if (!carousel) return;
+            
+            const cardWidth = 338; // card width (320px) + gap (18px)
+            const scrollAmount = cardWidth * 2 * direction;
+            
+            if (!carousels[category]) {
+                carousels[category] = 0;
+            }
+            
+            carousels[category] += scrollAmount;
+            
+            const maxScroll = -(carousel.scrollWidth - carousel.parentElement.offsetWidth);
+            
+            if (carousels[category] > 0) {
+                carousels[category] = 0;
+            } else if (carousels[category] < maxScroll) {
+                carousels[category] = maxScroll;
+            }
+            
+            carousel.style.transform = `translateX(${carousels[category]}px)`;
+        }
+    </script>
+
+</body>
+</html>
